@@ -158,27 +158,27 @@ int main() {
     deque<int> dq;
     vi resmax(n-k+1),resmin(n-k+1); int x=0,y=0;
     rep(i,k) {
-        while(!dq.empty() && a[i]<=a[dq.front()])dq.pop_back(); 
+        while(!dq.empty() && a[i]<=a[dq.back()])dq.pop_back(); 
         dq.push_back(i);
     }
     resmin[x++]=a[dq.front()];
     rng(i,k,n) {
-        if(dq.front()==i-k)dq.pop_front();
-        while(!dq.empty()&&a[i]<=a[dq.front()])dq.pop_back();
+        while(!dq.empty() && dq.front()<=i-k)dq.pop_front();
+        while(!dq.empty()&&a[i]<=a[dq.back()])dq.pop_back();
         dq.push_back(i);
         resmin[x++]=a[dq.front()];
     }
     debug(resmin)
     while(!dq.empty())dq.pop_back();
     rep(i,k) {
-        while(!dq.empty()&&a[i]>=a[dq.front()]) dq.pop_back();
+        while(!dq.empty()&&a[i]>=a[dq.back()]) dq.pop_back();
         dq.push_back(i);
     }
     x=0;
     resmax[x++]=a[dq.front()];
     rng(i,k,n) {
-        if(dq.front()==i-k)dq.pop_front();
-        while(!dq.empty()&&a[i]>=a[dq.front()])dq.pop_back();
+        while(!dq.empty() && dq.front()<=i-k)dq.pop_front();
+        while(!dq.empty()&&a[i]>=a[dq.back()])dq.pop_back();
         dq.push_back(i);
         resmax[x++]=a[dq.front()];
     }
